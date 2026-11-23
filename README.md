@@ -1,34 +1,43 @@
 # Catch the Stars
 
-《Catch the Stars》是一款单人 2D 接星小游戏。用左右方向键移动角色，在 30 秒内接住从上方落下的星星，每接住一颗得 1 分。项目已于 2026 年 11 月 22 日结项归档。
+《Catch the Stars》是一款单人 2D 接星小游戏。用 30 秒接住尽可能多的星星，每颗星星得 1 分。时间结束后可以查看得分并重开。
 
-## 运行方式
+## 游玩
 
-1. 用 Godot 4.7 系列编辑器导入本目录的 `project.godot`。归档验收使用 Windows 上的 Godot 4.7.2 stable。
-2. 等待素材导入完成，按 `F5` 运行项目。
-3. 点击 **Start Game** 开始，用 `←` / `→` 移动。倒计时结束后查看得分，点击 **Play Again** 重开。
+- **电脑浏览器**　点击 **Start Game**，用 `←` / `→` 移动。
+- **手机浏览器**　建议横屏，点击 **Start Game**，按住游戏画面底部左侧或右侧的箭头移动。松开即停止。
+- 回合结束后点 **Play Again** 重开。网页版在首次点击 **Start Game** 后播放背景音乐。
 
-## 功能与技术栈
+本地预览使用 HTTP 服务器提供 `web/`。例如，已安装 Python 3 时，在项目根目录执行 `python -m http.server 8000 --bind 127.0.0.1 --directory web`，再访问 `http://127.0.0.1:8000/`。浏览器需要 WebAssembly 和 WebGL 2.0。
 
-- 开始菜单、左右移动及边界限制、星星随机生成和下落、碰撞收集、粒子反馈、实时计分、30 秒倒计时、结算与重开。
-- 循环背景音乐，以及按钮、收集和结算音效。
-- Godot 4、GDScript、GL Compatibility 渲染、SVG 图像和 WAV 音频。
+## Godot 工程与导出
 
-## 文件结构
+用 **Godot 4.7.2 stable** 导入 `project.godot`，等待资源导入后按 `F5`。项目使用 GDScript、GL Compatibility 渲染、SVG 和 WAV。
 
-| 路径 | 用途 |
+重新导出时，安装相同版本的导出模板，从 Godot 编辑器选择 **Project → Export → Web → Export Project**，关闭 **Export With Debug**，输出到 `web/index.html`。也可从项目根目录执行以下命令。Web 预设禁用了线程，所有生成文件需要一起发布并保留原文件名。
+
+```sh
+godot --headless --import
+godot --headless --export-release Web web/index.html
+```
+
+## GitHub Pages
+
+1. 创建一个空的公开仓库 `catch-the-stars`，推送本地 `main`。也可以推送原始结项标签 `archive-2026-11-22`。
+2. 在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
+3. 在 **Actions → Deploy game to GitHub Pages → Run workflow** 选择 `main`。成功后从部署记录打开公开地址，默认格式为 `https://<GitHub 用户名>.github.io/catch-the-stars/`。
+
+工作流只部署 `web/`。HTML 用相对路径加载 JS、WASM、PCK 和音频脚本，以支持 GitHub Pages 的仓库子路径。
+
+## 版本与文件
+
+| 路径或标签 | 内容 |
 | --- | --- |
-| `project.godot` | 项目配置和入口 |
-| `main.tscn`、`main.gd` | 主场景、界面、回合流程和音频触发 |
-| `player.tscn`、`player_body.gd` | 角色场景、移动和边界限制 |
-| `star.tscn`、`star.gd` | 星星场景、下落和碰撞 |
-| `background.gd`、根目录的 `*.svg` | 运行时绘制的背景、角色与星星图像、项目图标 |
-| `assets/audio/` | 背景音乐和音效 |
-| `player.gd` | 保留的早期角色脚本，当前场景未引用 |
-| `PROJECT_CLOSEOUT.md` | 验收结果与归档记录 |
+| `archive-2026-11-22`、`PROJECT_CLOSEOUT.md` | 原始结项快照和当时的验收记录 |
+| `main.tscn`、`main.gd` | 菜单、计时计分、结算和音频 |
+| `player.tscn`、`player_body.gd`、`star.tscn`、`star.gd` | 角色移动与星星碰撞 |
+| `touch_controls.gd` | 触屏按钮布局与绘制 |
+| `assets/audio/`、根目录的 SVG | 原有音频和美术资源 |
+| `export_presets.cfg`、`web/`、`.github/workflows/pages.yml` | Web 导出预设、静态发布文件及 Pages 工作流 |
 
-## 已知限制
-
-- 单人键盘玩法，分数仅保留在当局。
-- 归档版使用当前场景中的现有美术，v0.2 美术未接入。
-- 本次归档提供 Godot 源码工程。Windows Release 未导出。
+Web 适配增加了触屏操作、16:9 等比显示、手势后启动网页音频和 Pages 发布配置。宽屏或竖屏窗口会保留黑边。分数只保留在当局，v0.2 美术未接入。

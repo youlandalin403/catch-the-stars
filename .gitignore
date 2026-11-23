@@ -1,3 +1,15 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/backups/
+/build/
+/builds/
+/exports/
+*.tmp
+*.log
+*.bak
+.DS_Store
+Thumbs.db
+export_credentials.cfg
+.env
+.env.*

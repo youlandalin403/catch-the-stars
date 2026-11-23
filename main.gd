@@ -20,6 +20,7 @@ var score: int = 0
 @onready var menu_box = $HUD/Menu/MenuBox
 @onready var message = $HUD/Menu/MenuBox/MessageLabel
 @onready var action_button = $HUD/Menu/MenuBox/ActionButton
+@onready var touch_controls = $HUD/TouchControls
 
 
 # 1. 初始化
@@ -32,7 +33,8 @@ func _ready():
 
 	show_menu()
 
-	$BGM.play()
+	if not OS.has_feature("web"):
+		$BGM.play()
 
 
 # 2. 设置界面样式
@@ -64,6 +66,7 @@ func show_menu():
 
 	message.text = "Catch the Stars"
 	action_button.text = "Start Game"
+	touch_controls.hide()
 
 	menu.show()
 
@@ -85,12 +88,16 @@ func start_game():
 
 	menu.hide()
 	status_label.show()
+	touch_controls.visible = DisplayServer.is_touchscreen_available()
 
 	$StarTimer.start()
 	$GameTimer.start()
 
 	update_hud()
 
+	# 浏览器在玩家第一次操作后才允许播放音频。
+	if not $BGM.playing:
+		$BGM.play()
 	$ButtonSound.play()
 
 
@@ -166,6 +173,7 @@ func game_over():
 
 	message.text = "Game Over!\nFinal Score: " + str(score)
 	action_button.text = "Play Again"
+	touch_controls.hide()
 
 	menu.show()
 

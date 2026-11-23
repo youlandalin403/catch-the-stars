@@ -7,6 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://ba8nwuv044uin" path="res://assets/audio/collect.wav" id="4_272bh"]
 [ext_resource type="AudioStream" uid="uid://gqbg23v7sj6y" path="res://assets/audio/button.wav" id="5_5vw27"]
 [ext_resource type="AudioStream" uid="uid://bp5lfgvjik142" path="res://assets/audio/game_over.wav" id="6_kek77"]
+[ext_resource type="Script" path="res://touch_controls.gd" id="7_touch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_touch"]
+size = Vector2(120, 102)
 
 [node name="Main" type="Node2D" unique_id=1758445831]
 script = ExtResource("1_0xm2m")
@@ -45,6 +49,22 @@ layout_mode = 2
 
 [node name="ActionButton" type="Button" parent="HUD/Menu/MenuBox" unique_id=2145935467]
 layout_mode = 2
+
+[node name="TouchControls" type="Node2D" parent="HUD"]
+visible = false
+script = ExtResource("7_touch")
+
+[node name="Left" type="TouchScreenButton" parent="HUD/TouchControls"]
+shape = SubResource("RectangleShape2D_touch")
+shape_visible = false
+action = "ui_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="HUD/TouchControls"]
+shape = SubResource("RectangleShape2D_touch")
+shape_visible = false
+action = "ui_right"
+visibility_mode = 1
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=410729135]
 stream = ExtResource("3_7mycd")
