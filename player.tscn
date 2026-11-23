@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bwa3pkb41ey4t"]
+
+[ext_resource type="Script" uid="uid://dotqqm1a4yuvd" path="res://player_body.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bx0ngau03e2qp" path="res://little_stargazer.svg" id="2_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yovgh"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D" unique_id=888135189]
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1009761038]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302573193]
+shape = SubResource("RectangleShape2D_yovgh")

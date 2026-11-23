@@ -1,0 +1,50 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="128" height="128"
+     viewBox="0 0 128 128">
+  <!-- 斗篷 -->
+  <path d="M39 52 Q22 69 25 113
+           Q58 130 89 113 Q92 69 76 52 Z"
+        fill="#62567F" stroke="#403858"
+        stroke-width="4"/>
+
+  <!-- 兜帽 -->
+  <path d="M34 54 Q23 14 61 12
+           Q97 14 85 54 L76 67 H42 Z"
+        fill="#62567F" stroke="#403858"
+        stroke-width="4"/>
+
+  <!-- 脸 -->
+  <ellipse cx="60" cy="53" rx="22" ry="25"
+           fill="#F4D5BA"/>
+
+  <!-- 头发 -->
+  <path d="M39 46 Q43 22 72 32
+           L81 46 Q58 37 39 46 Z"
+        fill="#342F48"/>
+
+  <!-- 眼睛和微笑 -->
+  <circle cx="51" cy="55" r="2.5" fill="#42364C"/>
+  <circle cx="69" cy="55" r="2.5" fill="#42364C"/>
+  <path d="M57 66 Q61 69 65 66"
+        fill="none" stroke="#A26E79"
+        stroke-width="2"/>
+
+  <!-- 围巾 -->
+  <path d="M39 81 Q60 88 81 80"
+        fill="none" stroke="#B9A7D8"
+        stroke-width="6"/>
+
+  <!-- 腿 -->
+  <path d="M43 110 V122 M76 110 V122"
+        stroke="#39354E" stroke-width="8"/>
+
+  <!-- 手臂与提灯 -->
+  <path d="M84 77 L103 88"
+        stroke="#F4D5BA" stroke-width="7"/>
+  <rect x="96" y="86" width="22" height="29"
+        rx="4" fill="#D6AE65"
+        stroke="#F4E8CC" stroke-width="2"/>
+  <rect x="102" y="92" width="10" height="16"
+        rx="2" fill="#FFF0A9"/>
+</svg>

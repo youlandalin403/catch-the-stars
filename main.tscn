@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bhv732m6kk8fd"]
+
+[ext_resource type="Script" uid="uid://b4i3t3i4idt5" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bwa3pkb41ey4t" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dlhytca0xarkl" path="res://background.gd" id="2_272bh"]
+[ext_resource type="AudioStream" uid="uid://ffdmydv4vek7" path="res://assets/audio/night_loop.wav" id="3_7mycd"]
+[ext_resource type="AudioStream" uid="uid://ba8nwuv044uin" path="res://assets/audio/collect.wav" id="4_272bh"]
+[ext_resource type="AudioStream" uid="uid://gqbg23v7sj6y" path="res://assets/audio/button.wav" id="5_5vw27"]
+[ext_resource type="AudioStream" uid="uid://bp5lfgvjik142" path="res://assets/audio/game_over.wav" id="6_kek77"]
+
+[node name="Main" type="Node2D" unique_id=1758445831]
+script = ExtResource("1_0xm2m")
+
+[node name="Background" type="Node2D" parent="." unique_id=1239377470]
+script = ExtResource("2_272bh")
+
+[node name="Player" parent="." unique_id=888135189 instance=ExtResource("1_ig7tw")]
+position = Vector2(576, 568)
+
+[node name="StarTimer" type="Timer" parent="." unique_id=440057261]
+wait_time = 0.8
+autostart = true
+
+[node name="GameTimer" type="Timer" parent="." unique_id=1953057797]
+wait_time = 30.0
+one_shot = true
+
+[node name="Stars" type="Node2D" parent="." unique_id=265489249]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2118272151]
+
+[node name="StatusLabel" type="Label" parent="HUD" unique_id=926655026]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Menu" type="CenterContainer" parent="HUD" unique_id=309500666]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MenuBox" type="VBoxContainer" parent="HUD/Menu" unique_id=584903138]
+layout_mode = 2
+
+[node name="MessageLabel" type="Label" parent="HUD/Menu/MenuBox" unique_id=566475834]
+layout_mode = 2
+
+[node name="ActionButton" type="Button" parent="HUD/Menu/MenuBox" unique_id=2145935467]
+layout_mode = 2
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=410729135]
+stream = ExtResource("3_7mycd")
+volume_db = -18.0
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=67560336]
+stream = ExtResource("4_272bh")
+volume_db = -10.0
+
+[node name="ButtonSound" type="AudioStreamPlayer2D" parent="." unique_id=725582093]
+stream = ExtResource("5_5vw27")
+volume_db = -12.0
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="." unique_id=1909870017]
+stream = ExtResource("6_kek77")
+volume_db = -9.0
